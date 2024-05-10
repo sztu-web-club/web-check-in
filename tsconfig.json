@@ -12,7 +12,7 @@
   "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "vueCompilerOptions": {
-    "experimentalRuntimeMode": "runtime-uni-app",
+    "plugins": ["@uni-helper/uni-app-types/volar-plugin"],
     "nativeTags": ["block", "component", "template", "slot"]
   }
 }
