@@ -2,23 +2,58 @@
   "pages": [
     {
       "path": "pages/index",
-      "type": "home"
+      "type": "home",
+      "style": {
+        "navigationBarTitleText": "打卡任务"
+      }
     },
     {
       "path": "pages/hi",
       "type": "page",
-      "layout": "home"
+      "layout": "home",
+      "style": {
+        "navigationBarTitleText": "快速打卡"
+      }
+    },
+    {
+      "path": "pages/user",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
     }
   ],
   "globalStyle": {
-    "backgroundColor": "@bgColor",
+    "backgroundColor": "#F8F8F8",
     "backgroundColorBottom": "@bgColorBottom",
     "backgroundColorTop": "@bgColorTop",
     "backgroundTextStyle": "@bgTxtStyle",
-    "navigationBarBackgroundColor": "#000000",
-    "navigationBarTextStyle": "@navTxtStyle",
-    "navigationBarTitleText": "Vitesse-Uni",
+    "navigationBarBackgroundColor": "#31C27C",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "签到打卡",
     "navigationStyle": "custom"
   },
-  "subPackages": []
+  "subPackages": [],
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#31C27C",
+    "list": [
+      {
+        "text": "打卡任务",
+        "pagePath": "pages/index",
+        "iconPath": "static/qiandao.png",
+        "selectedIconPath": "static/qiandaoSelect.png"
+      }, {
+        "text": "快速签到",
+        "pagePath": "pages/hi",
+        "iconPath": "static/duigou.png",
+        "selectedIconPath": "static/duigouSelect.png"
+      }, {
+        "text": "个人中心"  ,
+        "pagePath": "pages/user",
+        "iconPath": "static/wode.png",
+        "selectedIconPath": "static/wodeSelect.png"
+      }
+    ]
+  }
 }

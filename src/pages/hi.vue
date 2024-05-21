@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-const { value: name } = useQuery('name')
+// const { value: name } = useQuery('name')
 </script>
 
 <template>
-  <view>{{ name }}</view>
+  <!--  <view>{{ name }}</view>
 
-  <HiCounter />
+  <HiCounter /> -->
+  <view class="" />
 </template>
 
 <route lang="json">
