@@ -1,11 +1,9 @@
+// 此页是快速打卡页面
 <script lang="ts" setup>
-// const { value: name } = useQuery('name')
+
 </script>
 
 <template>
-  <!--  <view>{{ name }}</view>
-
-  <HiCounter /> -->
   <view class="" />
 </template>
 
