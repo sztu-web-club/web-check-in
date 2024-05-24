@@ -10,7 +10,5 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
-    HiCounter: typeof import('./components/HiCounter.vue')['default']
-    InputEntry: typeof import('./components/InputEntry.vue')['default']
   }
 }

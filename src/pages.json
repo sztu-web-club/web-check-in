@@ -6,8 +6,14 @@
       "layout": "default"
     },
     {
+      "path": "pages/create",
+      "type": "page",
+      "layout": "home"
+    },
+    {
       "path": "pages/tasks",
-      "type": "page"
+      "type": "page",
+      "layout": "default"
     },
     {
       "path": "pages/user",

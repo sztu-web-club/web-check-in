@@ -1,8 +1,8 @@
 <template>
-  <view class="px-10 py-20 text-center">
+  <view>
     <slot />
     <app-footer />
-    <view class="mx-auto mt-5 text-center text-sm opacity-25" />
+    <!-- <view class="mx-auto mt-5 text-center text-sm opacity-25" /> -->
     <!-- 12312312312 -->
   </view>
 </template>

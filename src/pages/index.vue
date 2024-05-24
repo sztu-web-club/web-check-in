@@ -1,20 +1,28 @@
-// 此页是 快速打卡 页面
+<!-- eslint-disable unused-imports/no-unused-vars -->
+// 此页是 打卡任务 页面
 <script setup lang="ts">
+// import { ref } from 'vue'
+
+function timestampToTime(timestamp: Date) {
+  timestamp = timestamp || null
+
+  // 检查 timestamp 是否为 null
+  if (timestamp === null)
+    return ''
+  const date = new Date(timestamp)
+  const h = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}:`
+  const m = `${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}:`
+  const s = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()
+  return h + m + s
+}
 </script>
 
 <template>
   <view>
     <view class="defaultTop">
       <view class="fontPosition">
-        签到打卡
-      </view>
-    </view>
-    <view class="defaultTab">
-      <view class="current">
         快速打卡
       </view>
-      <view>打卡任务</view>
-      <view>个人中心</view>
     </view>
   </view>
 
@@ -44,12 +52,14 @@
 
     <view class="clickCheck">
       <view class="checkButton">
-        点击打卡
+        点&nbsp;击&nbsp;打&nbsp;卡
       </view>
     </view>
 
     <view class="text2">
-      本月已累计打卡&nbsp;<text>{{ '10086' }}</text>&nbsp;天，未打卡&nbsp;<text>{{ '114514' }}</text>&nbsp;天
+      <view class="info">
+        本月已累计打卡&nbsp;&nbsp;<text>{{ '1' }}</text>&nbsp;&nbsp;天，未打卡&nbsp;&nbsp;<text>{{ '1' }}</text>&nbsp;&nbsp;天
+      </view>
       <button size="mini">
         查看我的打卡记录
       </button>
@@ -57,7 +67,7 @@
   </view>
 </template>
 
-<style>
+<style scoped>
 .view {
   position: relative;
   overflow: hidden;
@@ -67,37 +77,19 @@
 .defaultTop {
   height: 130rpx;
   width: 100%;
-  background-color: #50df84;
+  background-color: rgb(78, 199, 106);
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   justify-content: center;
+  font-size: 32rpx;
 }
 
 .defaultTop .fontPosition {
   color: #fff;
   position: absolute;
   top: 60rpx;
-}
-
-.defaultTab {
-  height: 100rpx;
-  width: 100%;
-  position: absolute;
-  background-color: rgb(247, 247, 249);
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-around;
-  line-height: 100rpx;
-  text-align: center;
-  color: #555;
-  font-size: 28rpx;
-}
-
-.defaultTab .current {
-  color: rgb(80, 223, 132);
 }
 
 /* quickCheck */
@@ -123,7 +115,7 @@
 }
 
 .isCheck {
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   height: 30rpx;
 }
 
@@ -196,7 +188,7 @@
 }
 </style>
 
-<route  lang="json">
+<route lang="json">
 {
   "layout": "default"
 }

@@ -5,6 +5,7 @@
 
 interface NavigateToOptions {
   url: "/pages/index" |
+       "/pages/create" |
        "/pages/tasks" |
        "/pages/user";
 }

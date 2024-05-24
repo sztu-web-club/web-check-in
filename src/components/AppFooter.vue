@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 </script>
 
 <template>
@@ -17,6 +16,12 @@
 </template>
 
 <style>
+.view {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
 .defaultTab {
   height: 100rpx;
   width: 100%;
@@ -30,9 +35,14 @@
   text-align: center;
   color: #555;
   font-size: 28rpx;
+  position: fixed;
+}
+
+.defaultTab navigator {
+  width: 100%;
 }
 
 .defaultTab .current {
-  color: rgb(80, 223, 132);
+  color: rgb(78, 199, 106);
 }
 </style>
