@@ -77,8 +77,8 @@
 
 <style scoped>
 .view {
-  width: 80%;
   position: relative;
+  width: 80%;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -111,6 +111,7 @@
 
 /* createInfo */
 .createInfo {
+  margin-top: 130rpx;
   width: 93%;
   display: flex;
   flex-direction: column;
