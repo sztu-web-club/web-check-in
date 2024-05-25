@@ -1,14 +1,30 @@
-// 此页是 快速打卡 页面
+<!-- eslint-disable unused-imports/no-unused-vars -->
+// 此页是 打卡任务 页面
 <script setup lang="ts">
+// import { ref } from 'vue'
+
+function timestampToTime(timestamp: Date) {
+  timestamp = timestamp || null
+
+  // 检查 timestamp 是否为 null
+  if (timestamp === null)
+    return ''
+  const date = new Date(timestamp)
+  const h = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}:`
+  const m = `${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}:`
+  const s = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()
+  return h + m + s
+}
 </script>
 
 <template>
   <view>
     <view class="defaultTop">
       <view class="fontPosition">
-        签到打卡
+        快速打卡
       </view>
     </view>
+    签到打卡
   </view>
 
   <view class="quickCheck">
@@ -37,12 +53,14 @@
 
     <view class="clickCheck">
       <view class="checkButton">
-        点击打卡
+        点&nbsp;击&nbsp;打&nbsp;卡
       </view>
     </view>
 
     <view class="text2">
-      本月已累计打卡&nbsp;<text>{{ '10086' }}</text>&nbsp;天，未打卡&nbsp;<text>{{ '114514' }}</text>&nbsp;天
+      <view class="info">
+        本月已累计打卡&nbsp;&nbsp;<text>{{ '1' }}</text>&nbsp;&nbsp;天，未打卡&nbsp;&nbsp;<text>{{ '1' }}</text>&nbsp;&nbsp;天
+      </view>
       <button size="mini">
         查看我的打卡记录
       </button>
@@ -50,7 +68,7 @@
   </view>
 </template>
 
-<style>
+<style scoped>
 .view {
   position: relative;
   overflow: hidden;
@@ -117,7 +135,7 @@
 }
 
 .isCheck {
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   height: 30rpx;
 }
 
@@ -190,7 +208,7 @@
 }
 </style>
 
-<route  lang="json">
+<route lang="json">
 {
   "layout": "default"
 }
