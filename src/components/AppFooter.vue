@@ -30,6 +30,7 @@
   text-align: center;
   color: #555;
   font-size: 28rpx;
+  position: fixed;
 }
 
 .defaultTab .current {

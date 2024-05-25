@@ -9,13 +9,6 @@
         签到打卡
       </view>
     </view>
-    <view class="defaultTab">
-      <view class="current">
-        快速打卡
-      </view>
-      <view>打卡任务</view>
-      <view>个人中心</view>
-    </view>
   </view>
 
   <view class="quickCheck">
@@ -65,14 +58,15 @@
 }
 
 .defaultTop {
-  height: 130rpx;
-  width: 100%;
-  background-color: #50df84;
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:999;
+  height: 130rpx;
+  width: 100%;
+  background-color: rgb(78, 199, 106)
 }
 
 .defaultTop .fontPosition {
@@ -97,7 +91,7 @@
 }
 
 .defaultTab .current {
-  color: rgb(80, 223, 132);
+  color: rgb(78, 199, 106);
 }
 
 /* quickCheck */

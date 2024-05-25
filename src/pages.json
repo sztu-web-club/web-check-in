@@ -11,7 +11,8 @@
     },
     {
       "path": "pages/user",
-      "type": "page"
+      "type": "page",
+      "navigationBarTitleText": "个人中心"
     }
   ],
   "globalStyle": {
