@@ -1,19 +1,27 @@
-<!-- eslint-disable unused-imports/no-unused-vars -->
-// 此页是 打卡任务 页面
-<script setup lang="ts">
-// import { ref } from 'vue'
+// 此页是 快速签到 页面
+<script>
+export default {
+  data() {
+    return {
+      Time: '',
+    }
+  },
+  onShow() {
+    setInterval(() => {
+      this.Time = this.timestampToTime(+new Date())
+    }, 1000)
+  },
+  methods: {
+    timestampToTime(timestamp) {
+      timestamp = timestamp || null
+      const date = new Date(timestamp)
+      const h = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()} :`
+      const m = `${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()} :`
+      const s = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()
+      return `${h}  ${m}  ${s}`
+    },
 
-function timestampToTime(timestamp: Date) {
-  timestamp = timestamp || null
-
-  // 检查 timestamp 是否为 null
-  if (timestamp === null)
-    return ''
-  const date = new Date(timestamp)
-  const h = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}:`
-  const m = `${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}:`
-  const s = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()
-  return h + m + s
+  },
 }
 </script>
 
@@ -44,26 +52,30 @@ function timestampToTime(timestamp: Date) {
 
     <view class="time">
       <view class="timeNow">
-        {{ '19' }} : {{ '04' }} : {{ '11' }}
+        {{ Time }}
       </view>
       <view class="date">
         {{ '2024' }}年{{ '5' }}月{{ '23' }}日&nbsp;星期{{ '四' }}
       </view>
     </view>
 
-    <view class="clickCheck">
-      <view class="checkButton">
-        点&nbsp;击&nbsp;打&nbsp;卡
-      </view>
+    <view class="scan">
+      扫&nbsp;码&nbsp;打&nbsp;卡
     </view>
 
     <view class="text2">
       <view class="info">
         本月已累计打卡&nbsp;&nbsp;<text>{{ '1' }}</text>&nbsp;&nbsp;天，未打卡&nbsp;&nbsp;<text>{{ '1' }}</text>&nbsp;&nbsp;天
       </view>
-      <button size="mini">
-        查看我的打卡记录
-      </button>
+      <navigator
+        url="/pages/edit"
+        open-type="navigate"
+        hover-class="none"
+      >
+        <button size="mini">
+          查看我的打卡记录
+        </button>
+      </navigator>
     </view>
   </view>
 </template>
@@ -164,30 +176,18 @@ function timestampToTime(timestamp: Date) {
   height: 30rpx;
 }
 
-/* clickCheck */
-.clickCheck {
+/* scan */
+.scan {
   margin-top: 50rpx;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   width: 320rpx;
   height: 320rpx;
-  border-radius: 50%;
-  background: linear-gradient(to top left, silver, white);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 8rpx 8rpx 12rpx 8rpx;
-}
-
-.clickCheck .checkButton {
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background: linear-gradient(to top right, silver, white);
-  text-align: center;
-  line-height: 256rpx;
+  border: 1px solid #000;
 }
 
 /* text2 */

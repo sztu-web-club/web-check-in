@@ -5,11 +5,11 @@
   <view>
     <view class="defaultTop">
       <navigator
-        url="/pages/"
+        url="/pages/tasks"
         open-type="navigateBack"
         hover-class="navigator-hover"
       >
-        <text>返回</text>
+        <text>{{ '<返回' }}</text>
       </navigator>
       <view class="fontPosition">
         新建打卡项目
@@ -20,11 +20,11 @@
   <view class="createInfo">
     <newbox class="name bottomLine">
       <text>任务名称</text>
-      <input type="text" value="成华大道打卡">
+      <input type="text" value="">
     </newbox>
     <newbox class="bottomLine position">
       <text>地点</text>
-      <input type="text" value="成华大道">
+      <input type="text" value="">
     </newbox>
     <newbox class="bottomLine time">
       <text>打卡时间</text>

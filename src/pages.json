@@ -11,6 +11,16 @@
       "layout": "home"
     },
     {
+      "path": "pages/detail",
+      "type": "page",
+      "layout": "home"
+    },
+    {
+      "path": "pages/edit",
+      "type": "page",
+      "layout": "home"
+    },
+    {
       "path": "pages/tasks",
       "type": "page",
       "layout": "default"

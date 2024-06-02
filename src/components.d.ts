@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./components/AppFooter.vue')['default']
+    NavBar: typeof import('./components/NavBar.vue')['default']
+    TabBar: typeof import('./components/TabBar.vue')['default']
   }
 }

@@ -1,4 +1,71 @@
 <!-- 打卡任务 -->
+<script>
+export default {
+  data() {
+    return {
+      tasks: [],
+      finish: '未打卡',
+      userId: 1,
+    }
+  },
+  onLoad() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      uni.request({
+        url: `api/v1/user/${this.userId}/tasks`,
+        method: 'GET',
+        success: (res) => {
+          if (res) {
+            this.tasks = res
+            if (res.isComplete)
+              this.finish = '已完成'
+          }
+          else { this.error = '获取数据失败' }
+        },
+        fail: (err) => {
+          this.error = '网络请求失败'
+          console.error(err)
+        },
+      })
+    },
+    goDetail(item) {
+      uni.navigateTo({
+        url: `/pages/detail?cid=${item}`,
+      })
+    },
+    checkIn(taskId) {
+      uni.request({
+        url: `api/v1/user/${userId}/tasks/${taskId}/checkin`,
+        method: 'POST',
+        success: (res) => {
+          if (res) {
+            uni.showToast({
+              title: '打卡成功',
+              icon: 'success',
+            })
+          }
+          else {
+            uni.showToast({
+              title: '打卡失败',
+              icon: 'none',
+            })
+          }
+        },
+        fail: (err) => {
+          uni.showToast({
+            title: '网络请求失败',
+            icon: 'none',
+          })
+          console.error(err)
+        },
+      })
+    },
+  },
+}
+</script>
+
 <template>
   <view>
     <view class="defaultTop">
@@ -21,16 +88,21 @@
       </navigator>
     </view>
 
-    <view class="list">
-      <newbox v-for="item in 10" :key="item" class="item">
+    <scroll-view scroll-y class="list">
+      <newbox
+        v-for="item in tasks"
+        :key="item.taskId"
+        class="item"
+        @click="checkIn(item.taskId)"
+      >
         <text class="title">
-          任务{{ item }}
+          {{ item.taskName }}
         </text>
         <text class="isPass">
-          已打卡
+          {{ finish }}
         </text>
         <text class="pos">
-          成华大道
+          {{ item.description }}
         </text>
         <view class="status">
           <text class="isPass">
@@ -42,7 +114,7 @@
           </text>
         </view>
       </newbox>
-    </view>
+    </scroll-view>
   </view>
 </template>
 
@@ -79,14 +151,13 @@
   color: rgb(182, 182, 182);
   text-align: center;
   font-size: 36rpx;
-  margin-bottom: 200rpx;
 }
 
 /* createTask */
 
 /* list */
 .list {
-  margin-bottom: 100rpx;
+  margin-bottom: 50rpx;
   width: 100%;
   background-color: #fff;
   color: rgb(163, 163, 163);
