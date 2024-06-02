@@ -1,68 +1,68 @@
 <!-- 打卡任务 -->
-<script>
-export default {
-  data() {
-    return {
-      tasks: [],
-      finish: '未打卡',
-      userId: 1,
-    }
-  },
-  onLoad() {
-    this.getData()
-  },
-  methods: {
-    getData() {
-      uni.request({
-        url: `api/v1/user/${this.userId}/tasks`,
-        method: 'GET',
-        success: (res) => {
-          if (res) {
-            this.tasks = res
-            if (res.isComplete)
-              this.finish = '已完成'
-          }
-          else { this.error = '获取数据失败' }
-        },
-        fail: (err) => {
-          this.error = '网络请求失败'
-          console.error(err)
-        },
+<script setup lang="ts">
+const tasks = ref<Array<any>>([])
+const finish = ref('未打卡')
+const userId = ref(1)
+
+const getData = () => {
+  uni.request({
+    url: `api/v1/user/${userId.value}/tasks`,
+    method: 'GET',
+    success: (response) => {
+      if (Array.isArray(response.data)) {
+        tasks.value = response.data
+        // 检查是否有任务已完成
+        finish.value = response.data.some(task => task.isComplete) ? '已打卡' : '未打卡'
+      }
+      else {
+        console.error('响应数据不是数组')
+      }
+    },
+    fail: (error) => {
+      console.error('网络请求失败', error)
+      uni.showToast({
+        title: '网络请求失败',
+        icon: 'none',
       })
     },
-    goDetail(item) {
-      uni.navigateTo({
-        url: `/pages/detail?cid=${item}`,
+  })
+}
+onMounted(() => {
+  getData()
+})
+
+const _goDetail = (item: { taskId: number }) => {
+  uni.navigateTo({
+    url: `/pages/detail?taskId=${item.taskId}`,
+  })
+}
+
+const checkIn = (tasknum: number) => {
+  uni.request({
+    url: `api/v1/user/${userId.value}/tasks/${tasknum}/checkin`,
+    method: 'POST',
+    success: (response) => {
+      if (Array.isArray(response.data)) {
+        uni.showToast({
+          title: '打卡成功',
+          icon: 'success',
+        })
+      }
+      else {
+        uni.showToast({
+          title: '打卡失败',
+          icon: 'none',
+        })
+      }
+    },
+    fail: (err) => {
+      console.error('网络请求失败', err)
+      uni.showToast({
+        title: '网络请求失败',
+        icon: 'none',
       })
     },
-    checkIn(taskId) {
-      uni.request({
-        url: `api/v1/user/${userId}/tasks/${taskId}/checkin`,
-        method: 'POST',
-        success: (res) => {
-          if (res) {
-            uni.showToast({
-              title: '打卡成功',
-              icon: 'success',
-            })
-          }
-          else {
-            uni.showToast({
-              title: '打卡失败',
-              icon: 'none',
-            })
-          }
-        },
-        fail: (err) => {
-          uni.showToast({
-            title: '网络请求失败',
-            icon: 'none',
-          })
-          console.error(err)
-        },
-      })
-    },
-  },
+  })
 }
 </script>
 

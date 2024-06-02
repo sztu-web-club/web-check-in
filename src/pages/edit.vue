@@ -1,33 +1,34 @@
-<script>
-export default {
-  data() {
-    return {
-      record: [],
-      userId: 1,
-    }
-  },
-  onLoad() {
-    this.getDetail()
-  },
-  methods: {
-    getDetail() {
-      uni.request({
-        url: `api/v1/user/${this.userId}/attendance-records`,
-        method: 'GET',
-        success: (res) => {
-          if (res)
-            this.record = res
-          else
-            this.error = '获取数据失败'
-        },
-        fail: (err) => {
-          this.error = '网络请求失败'
-          console.error(err)
-        },
-      })
+<script setup lang="ts">
+const record = ref<Array<any>>([])
+const userId = ref(1)
+
+const getDetail = () => {
+  uni.request({
+    url: `api/v1/user/${userId.value}/attendance-records`,
+    method: 'GET',
+    success: (response) => {
+      if (Array.isArray(response.data)) {
+        record.value = response.data
+      }
+      else {
+        uni.showToast({
+          title: '获取数据失败',
+          icon: 'none',
+        })
+      }
     },
-  },
+    fail: (err) => {
+      uni.showToast({
+        title: '网络请求失败',
+        icon: 'none',
+      })
+      console.error('网络请求失败', err)
+    },
+  })
 }
+onMounted(() => {
+  getDetail()
+})
 </script>
 
 <template>
@@ -48,7 +49,11 @@ export default {
 
   <view class="edit">
     <scroll-view scroll-y class="list">
-      <newbox v-for="item in record" :key="item.recordId" class="item">
+      <newbox
+        v-for="item in record"
+        :key="item.recordId"
+        class="item"
+      >
         <!-- <text class="title">
           {{ '打卡任务' }}
         </text> -->

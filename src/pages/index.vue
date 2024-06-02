@@ -1,27 +1,25 @@
-// 此页是 快速签到 页面
-<script>
-export default {
-  data() {
-    return {
-      Time: '',
-    }
-  },
-  onShow() {
-    setInterval(() => {
-      this.Time = this.timestampToTime(+new Date())
-    }, 1000)
-  },
-  methods: {
-    timestampToTime(timestamp) {
-      timestamp = timestamp || null
-      const date = new Date(timestamp)
-      const h = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()} :`
-      const m = `${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()} :`
-      const s = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()
-      return `${h}  ${m}  ${s}`
-    },
+<!-- 此页是 快速签到 页面 -->
+<script setup lang="ts">
+const Time = ref('')
 
-  },
+function timestampToTime(timestamp?: number) {
+  const date = new Date(timestamp || Date.now())
+  const h = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}:`
+  const m = `${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}:`
+  const s = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()
+  return `${h} ${m} ${s}`
+}
+
+onMounted(() => {
+  updateTime()
+  const timer = setInterval(updateTime, 1000)
+  onUnmounted(() => {
+    clearInterval(timer)
+  })
+})
+
+function updateTime() {
+  Time.value = timestampToTime()
 }
 </script>
 
