@@ -2,12 +2,33 @@
   "pages": [
     {
       "path": "pages/index",
-      "type": "home"
+      "type": "home",
+      "layout": "default"
     },
     {
-      "path": "pages/hi",
+      "path": "pages/create",
       "type": "page",
       "layout": "home"
+    },
+    {
+      "path": "pages/detail",
+      "type": "page",
+      "layout": "home"
+    },
+    {
+      "path": "pages/edit",
+      "type": "page",
+      "layout": "home"
+    },
+    {
+      "path": "pages/tasks",
+      "type": "page",
+      "layout": "default"
+    },
+    {
+      "path": "pages/user",
+      "type": "page",
+      "navigationBarTitleText": "个人中心"
     }
   ],
   "globalStyle": {
